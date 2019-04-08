@@ -1,0 +1,124 @@
+<navbar></navbar>
+
+  <div class="page-wrapper">
+      <div class="content container-fluid">
+      <div class="row">
+      <div class="col-md-12">
+      <div class="panel panel-table">
+        <div class="panel-heading">
+            <div class="row topTier">
+                <h3 id="sectionalHeader" >Patients</h3>
+              <div class="sectionalInput">
+            
+                <mat-form-field>
+                  <mat-select placeholder="Select Practice"   [(ngModel)]="practice" >
+                      <mat-option value="{{practice.practiceName}}" *ngFor="let practice of newpractice">{{practice.practiceName}}</mat-option>
+                </mat-select>              
+              </mat-form-field>
+            
+                <mat-form-field >
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Patient">
+                </mat-form-field>
+                  <button mat-raised-button class="primaryColor" routerLink="/mdmuser" id="save">Add Patient</button>
+              </div>
+              </div>
+        </div>
+
+  <div class="panel-body">
+      <div class="table-responsive">
+  <table #table mat-table [dataSource]="dataSource" MatPaginator matSort >
+
+    <!-- Practice Name Column -->
+    <ng-container matColumnDef="patientId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header >Patient ID </th>
+      <td mat-cell *matCellDef="let patient"> {{patient.patientId}} </td>
+    </ng-container>
+
+    <!-- Practice Name Column -->
+    <ng-container matColumnDef="Name"  >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Name </th>
+      <td mat-cell *matCellDef="let patient"> {{patient.firstName}} {{patient.lastName}} </td>
+    </ng-container>
+
+    <!-- Practice Name Column -->
+    <!-- <ng-container matColumnDef="Age"  >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Age </th>
+      <td mat-cell *matCellDef="let patient"> {{patient.age}}</td>
+    </ng-container> -->
+
+    <!-- Practice Name Column -->
+    <!-- <ng-container matColumnDef="gender"  >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Gender </th>
+      <td mat-cell *matCellDef="let patient"> {{patient.gender}}</td>
+    </ng-container> -->
+
+    <!-- Practice Name Column -->
+    <!-- <ng-container matColumnDef="phone"  >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Phone </th>
+      <td mat-cell *matCellDef="let patient"> {{patient.homePhone}}</td>
+    </ng-container> -->
+    
+    <!-- City Column -->
+    <!-- <ng-container matColumnDef="Practice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Practice </th>
+      <td mat-cell *matCellDef="let patient"> {{patient.practice}} </td>
+    </ng-container> -->
+
+    <!-- City Column -->
+    <!-- <ng-container matColumnDef="dob">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
+      <td mat-cell *matCellDef="let patient"> {{patient.dob | date :'mediumDate' }} </td>
+    </ng-container> -->
+
+     <!-- City Column 
+    <ng-container matColumnDef="doctor">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Doctor </th>
+      <td mat-cell *matCellDef="let patient"> {{patient.doctor}} </td>
+    </ng-container>-->
+
+    
+    <ng-container matColumnDef="attorney">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Attorney </th>
+      <td mat-cell *matCellDef="let patient"> {{patient.attorneyFirstName}} {{patient.attorneyLastName}} </td>
+    </ng-container>
+
+      <ng-container matColumnDef="claimNo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Claim No </th>
+        <td mat-cell *matCellDef="let patient"> {{patient.pClaim}} , {{patient.sClaim }} </td>
+    </ng-container>
+    <ng-container matColumnDef="policyNo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Policy No </th>
+          <td mat-cell *matCellDef="let patient"> {{patient.pPolicy}} , {{patient.sPolicy }} </td>
+    </ng-container>
+    <ng-container matColumnDef="doa">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> DOA </th>
+        <td mat-cell *matCellDef="let patient"> {{patient.doa}} </td>
+    </ng-container>
+    <ng-container matColumnDef="doctor">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Provider </th>
+      <td mat-cell *matCellDef="let patient"> {{patient.practice}} </td>
+    </ng-container> 
+
+    <ng-container matColumnDef="Tasks">
+      <th mat-header-cell  *matHeaderCellDef> Tasks </th>
+      <td  mat-cell *matCellDef="let patient"> 
+        <!-- <button mat-raised-button class="primaryColor" (click)="openEditPatientDialog(patient.patientId)" >Edit</button>  -->
+         <button mat-raised-button class="dangerColor" (click)="deletePatient(patient.patientId)">Delete</button>|
+         <button mat-raised-button class="infoColor" [routerLink]="['/patient/documents/',patient.patientId]">DOS</button>|
+         <button mat-raised-button class="primaryColor">Demographic</button>|
+         <button mat-raised-button class="infoColor">Coversheet</button>
+          </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[ 5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+

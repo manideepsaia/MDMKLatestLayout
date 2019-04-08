@@ -1,0 +1,111 @@
+
+<mat-dialog-content [formGroup]="form">
+    <mat-card>
+        <form [formGroup]="form" >
+        <mat-card-content>
+          <!--  {{ message }}-->
+          <div class="row" >
+        <!--  <div class="col-3">
+            Date of Service
+          </div>
+          <div class="col-3">
+            Attorney Name
+          </div>-->
+         
+         <!-- <div class="col-3">
+            tasks
+          </div>-->
+
+          <div class="col-6" >
+              {{dos}}
+            </div>
+            <div class="col" >
+                <div class="row-3" *ngFor="let doctype of pdata.doc.newDocType[index].docType">
+                <!--<a href="#" id="upbtn" type="file" id="file" (click)="handleFileInput($event)"accept=".pdf">{{pdata.doc.documentTypes[index]}}</a>-->
+                <!--<a href="#" id="upbtn" type="file" id="file" (click)="handleFileInput($event)"accept=".pdf">{{pdata.doc.newDocType[index].docType}}</a>-->
+                <!--<a href="#" id="upbtn" type="file" id="file" (click)="handleFileInput($event)"accept=".pdf">{{doctype}}</a>-->
+            </div>
+            </div>
+          </div>
+    
+    <br>
+          <div class="row"  >
+              <mat-form-field class="col-3">
+                <!--  <mat-select [compareWith]="compareFn" placeholder="Select status" formControlName="status"  [(ngModel)]="status">-->
+                        <mat-select  placeholder="Select status" formControlName="status"  [(ngModel)]="status">
+                <!--<mat-option [value]="attorney" *ngFor="let attorney of user">{{attorney.firstName}}</mat-option>-->
+                <mat-option value="TBG-IN">TBG-IN</mat-option>
+                <mat-option value="TBG-FINAL">TBG-FINAL</mat-option>
+                <mat-option value="ARB">ARB</mat-option>        
+                <mat-option value="CLOSED">CLOSED</mat-option>        
+                </mat-select>              
+               </mat-form-field>
+             
+            <!--  <label  >Status Date :</label>-->
+              <mat-form-field class="col-3">
+                  <input  matInput [matDatepicker]="STATUSdate"  (focus)="STATUSdate.open()"  placeholder="Select status Date" formControlName="statusDate" [(ngModel)]="statusDate">
+              <mat-datepicker-toggle matSuffix [for]="STATUSdate"></mat-datepicker-toggle>
+              <mat-datepicker #STATUSdate ></mat-datepicker>
+              </mat-form-field>
+
+           <!-- <div class="col-3" >
+                {{dos}}
+              </div>-->
+             <!--  <mat-form-field class="col-3">
+                    <mat-select placeholder="Select attorney" formControlName="attorney"  >
+                  <mat-option [value]="attorney" *ngFor="let attorney of user">{{attorney.firstName}}</mat-option>
+                  </mat-select>              
+                 </mat-form-field>-->
+                
+
+               
+                    </div>
+                    <div class="row"  >
+
+                        <mat-form-field class="col-3">
+                            <mat-select [compareWith]="compareFn" placeholder="Select attorney" formControlName="attorney"  [(ngModel)]="attorney" >
+                          <mat-option [value]="attorney" *ngFor="let attorney of user">{{attorney?.firstName}}</mat-option>
+                          </mat-select>              
+                         </mat-form-field>
+                         
+                        <mat-form-field class="col-3">
+                            <input matInput [matDatepicker]="PAYMENTdate"  (focus)="PAYMENTdate.open()"  placeholder="Select payment Date" formControlName="paymentDate" [(ngModel)]="paymentDate">
+                        <mat-datepicker-toggle matSuffix [for]="PAYMENTdate"></mat-datepicker-toggle>
+                        <mat-datepicker #PAYMENTdate></mat-datepicker>
+                        </mat-form-field>
+
+                      <!--  <div class="col-3">
+                            <a href="#" id="upbtn" type="file" id="file" (click)="handleFileInput($event)"accept=".pdf">{{pdata.doc.documentTypes[index]}}</a>
+                        </div>-->
+                    </div>
+                        <div class="row"  >
+                        <mat-form-field class="col-3">
+                            <textarea matInput placeholder="ARB notes" formControlName="arbNotes" [(ngModel)]="arbNotes"></textarea>
+                          </mat-form-field>
+                        
+
+                        <mat-form-field class="col-3">
+                            <textarea matInput placeholder="Nature of dispute" formControlName="natureOfDispute"  [(ngModel)]="natureOfDispute"></textarea>
+                          </mat-form-field>
+                        </div>
+                         
+                    <mat-divider></mat-divider>
+                    <div id="pdfVw" > 
+                        <pdf-viewer [src]="pdfSrc" 
+                                    [render-text]="true"
+                                    [(page)]="page"
+                                    [show-all]="showAll"
+                                    (after-load-complete)="afterLoadComplete($event)"
+                                    style="display: block;">
+                        </pdf-viewer>
+                      </div>
+    </mat-card-content>
+    </form>
+    </mat-card>
+    </mat-dialog-content>
+    <mat-dialog-actions align="center">
+        <button class="mat-raised-button primaryColor" [disabled]="saveDisabled" id="saveBtn" (click)="save()">Save</button>
+        <button class="mat-raised-button defaultColor" (click)="close()">Close</button>
+    </mat-dialog-actions>
+    
+    

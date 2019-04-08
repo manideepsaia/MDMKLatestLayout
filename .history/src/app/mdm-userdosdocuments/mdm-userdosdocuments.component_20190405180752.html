@@ -1,0 +1,119 @@
+<navbar></navbar>
+
+
+<table  #table mat-table [dataSource]="dataSource">
+
+  <!-- Practice Name Column -->
+  <ng-container matColumnDef="patientId">
+    <th mat-header-cell *matHeaderCellDef  >Patient ID </th>
+    <td mat-cell *matCellDef="let currentPatient"> {{currentPatient.patientId}}</td>
+  <!-- <td mat-cell *matCellDef="let currentPatient"> {{currentPatient.patientItem.patientId}}</td>-->
+  </ng-container>
+
+  <!-- Practice Name Column -->
+  <ng-container matColumnDef="Name"  >
+    <th mat-header-cell *matHeaderCellDef  > Name </th>
+   <td mat-cell *matCellDef="let currentPatient"> {{currentPatient.firstName}} {{currentPatient.lastName}} </td>
+ <!--  <td mat-cell *matCellDef="let currentPatient"> {{currentPatient.patientItem.firstName}} {{currentPatient.patientItem.lastName}} </td>-->
+  </ng-container>
+
+  <!-- Practice Name Column -->
+  <ng-container matColumnDef="Age"  >
+    <th mat-header-cell *matHeaderCellDef  > Age </th>
+   <!-- <td mat-cell *matCellDef="let currentPatient"> {{currentPatient.patientItem.age}}</td>-->
+   <td mat-cell *matCellDef="let currentPatient"> {{currentPatient.age}}</td>
+  </ng-container>
+
+  <!-- Practice Name Column -->
+  <ng-container matColumnDef="gender"  >
+    <th mat-header-cell *matHeaderCellDef  > Gender </th>
+   <!-- <td mat-cell *matCellDef="let currentPatient"> {{currentPatient.patientItem.gender}}</td>-->
+   <td mat-cell *matCellDef="let currentPatient"> {{currentPatient.gender}}</td>
+  </ng-container>
+
+  <!-- Practice Name Column -->
+  <ng-container matColumnDef="phone"  >
+    <th mat-header-cell *matHeaderCellDef  > Phone </th>
+   <!-- <td mat-cell *matCellDef="let currentPatient"> {{currentPatient.patientItem.homePhone}}</td>-->
+   <td mat-cell *matCellDef="let currentPatient"> {{currentPatient.homePhone}}</td>
+  </ng-container>
+  
+  <!-- City Column -->
+  <ng-container matColumnDef="Practice">
+    <th mat-header-cell *matHeaderCellDef > Practice </th>
+  <!--  <td mat-cell *matCellDef="let currentPatient"> {{currentPatient.practice.practiceName}} </td>-->
+  <td mat-cell *matCellDef="let currentPatient"> {{currentPatient.practiceName}} </td>
+  </ng-container>
+
+  <!-- City Column -->
+  <ng-container matColumnDef="doa">
+    <th mat-header-cell *matHeaderCellDef > DOA </th>
+   <!-- <td mat-cell *matCellDef="let currentPatient"> {{currentPatient.patientItem.doa | date :'mediumDate' }} </td>-->
+   <td mat-cell *matCellDef="let currentPatient"> {{currentPatient.doa | date :'mediumDate' }} </td>
+  </ng-container>
+
+    <!-- City Column -->
+  <ng-container matColumnDef="doctor">
+    <th mat-header-cell *matHeaderCellDef > Doctor </th>
+  <!--  <td mat-cell *matCellDef="let currentPatient"> {{currentPatient.doctor.firstName}} </td>-->
+  <td mat-cell *matCellDef="let currentPatient"> {{currentPatient.doctor}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-divider></mat-divider>
+<br>
+
+
+<mat-accordion>
+  <mat-expansion-panel id="expHeader" [disabled]="isDisabled">
+    <mat-expansion-panel-header >
+      <div class="col-4">
+        Date of Service
+      </div>
+      <div class="col">
+        Attorney Name
+      </div>
+      <div class="col">
+          Action
+        </div>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+</mat-accordion>
+            <mat-accordion *ngFor="let pat of patientr.newDocType; let i=index" >
+                <mat-expansion-panel  >
+                  <mat-expansion-panel-header >
+                    <div class="col-4">
+                    {{pat.dosDate}} 
+                    </div>
+                    <div class="col" *ngIf="patientr.hasOwnProperty('attorney') && patientr.attorney[i]">
+                     <a href="#" (click)="openAssignAttorneyDialog(pat.dosDate, i, patientr, $event)" >
+                            {{patientr.attorney[i].firstName}} {{patientr.attorney[i].lastName}}
+                            </a>
+                    </div>
+                    <div class="col" *ngIf="!(patientr.hasOwnProperty('attorney') && patientr.attorney[i])">
+                        <a href="#" (click)="openAssignAttorneyDialog(pat.dosDate, i, patientr, $event)" >
+                            assignattorney
+                              </a>
+                      </div>
+                    <div class="col" *ngIf="isAttorney">
+                        <button mat-raised-button id="processedButton" class="primaryColor" >Processed</button>
+           </div>
+      </mat-expansion-panel-header>
+        <div class="panelBody">
+        <div class="col-4">
+                <div class="row" *ngFor="let doctype of pat.docType; let j=index">
+                    <a href="#" (click)="open( $event)"> >
+             <a (click)="goToLink('http://localhost:4200/assets/doc/BL_frd_cart_Aug 26.pdf')" target="_blank">{{doctype}}</a>
+              </a>
+              </div>
+            </div>
+        </div>    
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-divider></mat-divider>
+  <mat-card>
+  <button mat-raised-button  id="updateBtn" (click)="Update()">Update</button>
+</mat-card>
+ 

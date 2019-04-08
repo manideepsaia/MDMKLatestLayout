@@ -1,0 +1,25 @@
+
+body{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+table{
+    width: 100%;
+
+}
+
+#expHeader mat-expansion-panel-header{
+    color: black !important;
+    font-weight: 600 !important;
+}
+
+.mat-raised-button{
+    background-color: azure;
+    margin-left: 8px;
+    height: 30px;
+}
+
+.panelBody {
+    line-height: 2.5rem;
+}

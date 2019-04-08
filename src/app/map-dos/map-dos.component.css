@@ -1,0 +1,196 @@
+body{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.mat-table{
+    width: 100%;
+    /* background-color: white; */
+}
+
+th{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.topTier{
+    margin-right: 0px;
+    margin-left: 0px; 
+    color: accent;
+}
+
+#sectionalHeader{
+    padding-top: 10px;
+    padding-left: 10px;
+    float: left;
+}
+
+.sectionalInput{
+    margin-left: auto;
+    padding-right: 8px;
+}
+
+.sectionalInput #selectPractice{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.sectionalButton{
+    height: 42px;
+    width: 120px;
+    margin: 10px;
+}
+
+.mat-table{
+    width: 100%;
+    /* background-color: white; */
+}
+
+th{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#uploadButton{
+    margin-bottom: 16px;
+}
+
+mat-card label{
+    padding-top: 14px;
+    padding-right: 8px;
+}
+
+mat-card button{
+    margin-top: 8px;
+    height: 32px;
+}
+
+mat-card-content div{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+mat-card-footer .row{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+/* mat-paginator{
+    background-color: white;
+} */
+
+mat-card-content{
+    margin-bottom: 16px;
+}
+
+#pdfVw{
+    padding-top: 16px;
+}
+
+:host ::ng-deep [_nghost-c11] .textLayer{
+    border: 2px solid black;
+}
+
+.pages{
+    height: 39px;
+    border-bottom: 1px solid gray;
+    margin-right: 16px;
+    padding: 0px;
+}
+
+.pages .mat-select-trigger{
+    padding-top: 14px;
+}
+
+
+/* sticky */
+
+.sticky{
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    z-index: 10;
+    width: 94.75%;
+    background-color: #acd4e1;
+    margin-left: -24px !important;
+    margin-right: 0px !important;
+    padding-left: 24px;
+}
+
+.sticky button{
+    background-color: azure;
+    color: black;
+}
+
+
+.stickyButton{
+    position: fixed;
+    width: auto;
+    float: left;
+    /* height: 400px;
+    overflow-y: scroll; */
+    top: 56px;
+    z-index: 10;
+    background-color: #acd4e1;
+    margin-right: 0px;
+    margin-left: -24px !important;
+    padding-right: 16px;
+    padding-left: 24px;
+}
+
+.stickyButton input{
+    width: 24px;
+}
+
+.stickyButton #matListPage{
+    height: 300px;
+    overflow-y: scroll;
+}
+
+#matListPage{
+    height: 300px;
+    overflow-y: scroll;
+}
+
+#pageNoView{
+    width: 24px;
+}
+
+p{
+    padding-top: 8px;
+}
+
+.chngBtn .mat-raised-button{
+/* background-color: #acd4e1; */
+background-color: azure;
+margin-right: 5px;
+margin-left: 5px;
+}
+
+
+#pageList{
+    width: auto;
+    float: left;
+}
+
+.pageSelect{
+    margin-left: 8px;
+    background-color: azure;
+}
+
+#Prev{
+    background-color: azure;
+}
+
+#Next{
+    margin-left: 16px;
+    background-color: azure;
+}
+
+#selectCurrent{
+    margin-top: 16px;
+    background-color: azure;
+}
+
+#practice{
+    margin-left: 16px;
+}

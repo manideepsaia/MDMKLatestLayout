@@ -1,0 +1,63 @@
+
+<!--<h2 *ngIf="!changeTitle" mat-dialog-title>Enter New Practice Details</h2>-->
+<h2 *ngIf="!changeTitle" mat-dialog-title>Add Practice Details</h2>
+<h2 *ngIf="changeTitle" mat-dialog-title>Edit Practice Details</h2>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field class="idField">
+      <input matInput formControlName="id">
+    </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Practice Name" formControlName="practiceName" [ngClass]="{ 'is-invalid': submitted && f.practiceName.errors }">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Address1" formControlName="address1" [ngClass]="{ 'is-invalid': submitted && f.address1.errors }">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Address2" formControlName="address2">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="City" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+  </mat-form-field>
+
+  <mat-form-field>
+      <mat-select placeholder="Select State" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+        <mat-option value="NewYork">New York</mat-option>
+        <mat-option value="NewJersey">New Jersey</mat-option>
+        <mat-option value="Florida">Florida</mat-option>        
+        <mat-option value="Ohio">Ohio</mat-option>        
+        <mat-option value="Minnesota">Minnesota</mat-option>
+      </mat-select>
+  </mat-form-field>
+
+  <!-- <mat-form-field>
+    <input type="text" matInput placeholder="Zipcode" formControlName="zipcode" [ngClass]="{ 'is-invalid': submitted && f.zipcode.errors }" 
+    pattern="\d{1,5}" maxlength="10">
+  </mat-form-field> -->
+
+  <mat-form-field>
+    <input type="text" matInput placeholder="Zipcode" formControlName="zipcode" (input)='zipcodeValidate($event.target.value,$event)' [ngClass]="{ 'is-invalid': submitted && f.zipcode.errors }">
+  </mat-form-field>
+  
+  <div class="marginTopFile">
+      <mat-card-title class="hea">Practice Header</mat-card-title>
+    <input id="upbtn" formControlName="practiceheader" formControlName="practiceheader" type="file" id="file" accept=".pdf">
+  </div>
+  <mat-form-field>
+      <input type="text" matInput placeholder="Tin Number" formControlName="tinnum" (keypress)="numberOnly($event)" [ngClass]="{ 'is-invalid': submitted && f.tinnum.errors }">
+    </mat-form-field>
+
+   </mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="center">
+    <!--<button class="mat-raised-button primaryColor" id="saveBtn" (click)="save()">Save</button>-->
+    <button class="mat-raised-button primaryColor" id="saveBtn" (click)="save()"><span *ngIf="!changeTitle">Save</span><span *ngIf="changeTitle">Update</span></button>
+    <button class="mat-raised-button defaultColor" (click)="close()">Close</button>
+</mat-dialog-actions>

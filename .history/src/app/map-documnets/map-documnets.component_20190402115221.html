@@ -1,0 +1,204 @@
+<navbar></navbar>
+<!-- import file html -->
+<div class="mat-elevation-z8 containerWidth" >
+<mat-card class="matCardBorder">
+  <form [formGroup]="form" >
+  <mat-card-content>
+    <!-- <app-assigndostoattorney [childMessage]="parentMessage"></app-assigndostoattorney>-->
+      <div class="row topTier" >
+          
+        <div class="sectionalInput">
+    <div id="uploadButton" >
+      <input  id="upbtn" type="file" id="file" (change)="handleFileInput($event.target.files)"accept=".pdf">
+    </div>
+    </div>
+    </div>
+    <!--<div *ngIf="pdf">-->
+    <mat-divider></mat-divider>
+   
+    <div class="row">
+          <label id="practice" class= "col-2" >Practice :</label>
+           <mat-form-field class= "col-2">
+              <mat-select placeholder="Select Practice"  formControlName="practice" [(ngModel)]="practice" >
+            <mat-option [value]="practice" *ngFor="let practice of newpractice">{{practice.practiceName}}</mat-option>
+           <!-- <mat-option value="Surgicore of JC">Surgicore of JC</mat-option>
+            <mat-option value="All City Family Health Care">All City Family Health Care</mat-option>        
+            <mat-option value="A&E Anesthesia Associates">A&E Anesthesia Associates</mat-option>        
+            <mat-option value="Manalappan Surgery Center">Manalappan Surgery Center</mat-option>-->
+           </mat-select>              
+           </mat-form-field>
+           <mat-form-field class= "col-2">
+              <mat-select placeholder="Select Provider" formControlName="doctor" [(ngModel)]="doctor" >
+                  <mat-option [value]="doctor" *ngFor="let doctor of user">{{doctor.firstName}}</mat-option>
+            <!--    <mat-option value="johndoe">John Doe</mat-option>
+                <mat-option value="drstrange">Dr. Stephen Strange</mat-option>
+                <mat-option value="kenneth mcculloch">Kenneth McCulloch</mat-option>        
+                <mat-option value="richardseldes">Richard Seldes</mat-option>        
+                <mat-option value="darrenfriedman">Darren Friedman</mat-option>-->
+              </mat-select>              
+            </mat-form-field>
+       <!--    <label>Date of Birth :</label>
+           <mat-form-field class="col-2">
+              <input matInput [matDatepicker]="DOB"  (focus)="DOB.open()"  placeholder="Select Date of Birth" formControlName="dob" [(ngModel)]="dob">
+           <mat-datepicker-toggle matSuffix [for]="DOB"></mat-datepicker-toggle>
+           <mat-datepicker #DOB></mat-datepicker>
+           </mat-form-field>
+           <label>Date of Accident :</label>
+           <mat-form-field class="col-2">
+              <input matInput [matDatepicker]="DOA" (focus)="DOA.open()" placeholder="Select Date of Accident" formControlName="doa" [(ngModel)]="doa" >
+           <mat-datepicker-toggle matSuffix [for]="DOA"></mat-datepicker-toggle>
+           <mat-datepicker #DOA></mat-datepicker>
+           </mat-form-field>  
+           -->  
+          
+    </div>
+   
+    <div class="row"  >
+          <label class= "col-2"  >Search Patient :</label>
+          <mat-form-field class="col-2" >
+           <mat-select placeholder="Search by"   formControlName="searchBy" [(ngModel)]="searchBy">
+           <mat-option value="patientId">Patient ID</mat-option>
+           <mat-option value="firtName">First Name</mat-option>
+           <mat-option value="lastName">Last Name</mat-option>        
+          </mat-select>
+          </mat-form-field>
+          <mat-form-field class="col-2">
+               <input matInput  placeholder="Enter Search Value"  formControlName="searchValue" (change)="applyFilter()" [(ngModel)]="searchValue">
+               </mat-form-field>
+              <!-- <button mat-raised-button id="goBtn" class="primaryColor" >Go</button> -->
+               <mat-form-field class="col-2">
+                <mat-select (openedChange)="openedChangefilter($event)"   id="applyfilter"  placeholder="Patients List" [(ngModel)]="patientItem" formControlName="patientItem"    >
+               <mat-option    [value]="patientItem"  *ngFor="let patientItem of patient ">{{patientItem.patientId}}--{{patientItem.firstName}}</mat-option>
+               </mat-select>
+               </mat-form-field>
+        </div>
+              <div class="row" #stickyMenu
+              [class.sticky] = "sticky"  >
+              <label id="documentType" class= "col-2" >Document Type : </label>
+          <mat-form-field class="col-2">
+              <mat-select placeholder="Select Document Type"  [ngClass]="{ 'isDisabled': isActive }" formControlName="documentTypes" [(ngModel)]="documentTypes">
+          <mat-option value="Claims Appeals">Claims Appeals</mat-option>
+          <mat-option value="Claims Form">Claims Form</mat-option>
+          <mat-option value="Clinical Tax Records">Clinical Tax Records</mat-option>        
+          <mat-option value="EOB's">EOB's</mat-option>        
+          <mat-option value="Mail Confirmations">Mail Confirmations</mat-option>
+          </mat-select>              
+          </mat-form-field>
+              
+              <mat-form-field class="col-2">
+                  <input matInput [matDatepicker]="DOSfrom" (focus)="DOSfrom.open()"  [ngClass]="{ 'isDisabled': isActive }" placeholder="Select From DOS" formControlName="dosFrom" [(ngModel)]="dosFrom">
+              <mat-datepicker-toggle matSuffix [for]="DOSfrom"></mat-datepicker-toggle>
+              <mat-datepicker #DOSfrom></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class="col-2">
+                  <input matInput [matDatepicker]="DOSto" (focus)="DOSto.open()" [ngClass]="{ 'isDisabled'  : isActive }" placeholder="Select To DOS" formControlName="dosTo" [(ngModel)]="dosTo">
+              <mat-datepicker-toggle matSuffix [for]="DOSto"></mat-datepicker-toggle>
+              <mat-datepicker #DOSto></mat-datepicker>
+               </mat-form-field>
+               <mat-select #mySelect (openedChange)="openedChange($event)" id="selectPage" class="col-1 pages" placeholder="Select Pages" *ngIf="pdf" [(ngModel)]="pageNumber"  formControlName="pageNumber" multiple [ngClass]="{ isDisabled: isActive }">
+                  <mat-option #allSelected (click)="unSelectAll()">Unselect All</mat-option>
+                <!-- <mat-option  [disabled]="page===null && addAndUpdatepage!==false" class="pageNo" id="{{i+1}}" *ngFor="let page of remainingPdfPages; let i = index" value="{{i+1}}"  >Page no: {{i+1}}</mat-option>-->
+                <mat-option  [disabled]="page===null" class="pageNo" id="{{i+1}}" *ngFor="let page of remainingPdfPages; let i = index" value="{{i+1}}"  >Page no: {{i+1}}</mat-option>
+                  </mat-select> 
+                  <button mat-raised-button color="primary" id="addBtn" (click)="add()"  *ngIf="addAndUpdate &&  patientItem">Add</button>
+                  <button mat-raised-button color="primary" id="addBtn" (click)="updateMapDoc()" *ngIf="!addAndUpdate">UPDATE</button>
+                  <button mat-raised-button color="primary" id="cancelBtn" (click)="Cancel()" *ngIf="!addAndUpdate" >cancel</button>
+                  <!--<button mat-raised-button color="primary" id="saveBtn" (click)="save()" *ngIf="addAndUpdate && pdf" [disabled]="deletedisabled">Save All</button>-->
+                 <!-- <button mat-raised-button color="primary" type="button" id="saveBtn" (click)="save()" *ngIf="addAndUpdate && patientItem" [routerLink]="['/mdmuser/mapDocuments/', model.patientItem]">Save All</button>-->
+                  <button mat-raised-button color="primary" type="button" id="saveBtn" (click)="save()" *ngIf="addAndUpdate && patientItem" >Save All</button>
+                  
+              </div>
+             
+
+     <div  class="row">
+      <table #table mat-table *ngIf="dataSource" [dataSource]="dataSource" MatPaginator matSort >
+      <ng-container matColumnDef="Document Type">
+         <th mat-header-cell *matHeaderCellDef> Document Type </th>
+         <td mat-cell *matCellDef="let doc"> {{doc.documentTypes}} </td>
+       </ng-container>
+       <ng-container matColumnDef="Practice Id">
+           <th mat-header-cell *matHeaderCellDef> Practice Id </th>
+           <td mat-cell *matCellDef="let doc"> {{doc.practice}} </td>
+         </ng-container>
+         <ng-container matColumnDef="doctor">
+            <th mat-header-cell *matHeaderCellDef> doctor </th>
+            <td mat-cell *matCellDef="let doc"> {{doc.doctor}} </td>
+          </ng-container>
+         <ng-container matColumnDef="Patient Id">
+             <th mat-header-cell *matHeaderCellDef> Patient Id </th>
+             <!--<td mat-cell *matCellDef="let doc"> {{doc.patientItem}} if addmapdoc(formvalue.patientItem.patientId) </td>-->
+             <td mat-cell *matCellDef="let doc"> {{doc.patientItem.patientId}} - {{doc.patientItem.firstName}} </td>
+           </ng-container>
+         <!--  <ng-container matColumnDef="Date of Birth">
+               <th mat-header-cell *matHeaderCellDef> Date of Birth </th>
+               <td mat-cell *matCellDef="let doc"> {{doc.dob|date:'dd/MM/yyyy'}} </td>
+             </ng-container>
+             <ng-container matColumnDef="DOA">
+                 <th mat-header-cell *matHeaderCellDef> DOA </th>
+                 <td mat-cell *matCellDef="let doc"> {{doc.doa|date:"dd/MM/yyyy"}} </td>
+               </ng-container>-->
+               <ng-container matColumnDef="DOS From - DOS To">
+                   <th mat-header-cell *matHeaderCellDef> DOS From - DOS To </th>
+                   <td mat-cell *matCellDef="let doc"> {{doc.dosFrom|date:"dd/MM/yyyy"}} - {{doc.dosTo | date:"dd/MM/yyyy"}} </td>
+                 </ng-container>
+               
+                
+                 <ng-container matColumnDef="Pages">
+                     <th mat-header-cell *matHeaderCellDef> Pages </th>
+                     <td mat-cell *matCellDef="let doc"> {{doc.pageNumber}} </td>
+                   </ng-container>
+                   <ng-container matColumnDef="Actions">
+                       <th mat-header-cell *matHeaderCellDef> Actions </th>
+                    <td mat-cell *matCellDef="let doc;let i =index"> <button [disabled]="editdisabled" mat-raised-button  color="primary" (click)="editMapDoc(doc,i)" >Edit</button> | <button [disabled]="deletedisabled" mat-raised-button color="warn" (click)="deleteMapDoc(doc, i)" >Delete</button> </td>
+                     </ng-container>
+                     <!---->
+       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+     </table>
+    
+   </div>
+ <!--</div>-->
+</mat-card-content>
+
+</form>
+
+</mat-card> 
+<div class="mat-divider" #matdivider >
+<mat-divider></mat-divider>
+</div>
+<mat-card>
+  <mat-card-content>
+    <div id="pageList" [class.stickyButton] = "stickyButton" *ngIf="!showAll && pdf" >
+      <p *ngIf="pdf">
+        Displaying <input id="pageNoView" matInput
+        placeholder="Page"
+        [(ngModel)]="page"><span *ngIf="pdf">of {{ pdf.numPages }}</span>
+      </p>
+      <div class="row">
+      <a mat-raised-button id="Prev" (click)="incrementPage(-1)">Previous</a>
+      <a mat-raised-button id="Next" (click)="incrementPage(+1)">Next</a>
+      </div>
+      <div class="row">
+        <a mat-raised-button id="selectCurrent" (click)="selectPageNext()">Select Current Page & Next</a>
+      </div>
+      
+      <p>Click on Page no to navigate</p>
+      <div id="matListPage">
+          <mat-list role="list" *ngFor="let page of remainingPdfPages; let i = index">
+            {{i+1}}.) <a mat-button (click)="showCurrentPage(i+1)">Page {{i+1}}</a><a class="pageSelect" mat-raised-button (click)="selectPage(i+1)">Select Page</a>           
+          </mat-list>
+      </div>       
+    </div>
+    <div id="pdfVw"> 
+      <pdf-viewer [src]="pdfSrc" 
+                  [render-text]="true"
+                  [(page)]="page"
+                  [show-all]="showAll"
+                  (after-load-complete)="afterLoadComplete($event)"
+                  style="display: block;">
+      </pdf-viewer>
+    </div>
+  </mat-card-content>
+  
+</mat-card>
+</div>
