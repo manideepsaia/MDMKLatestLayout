@@ -1,0 +1,20 @@
+﻿ <h1 class="text-center">Hi {{currentUser.firstName}}!</h1>
+ <h3 class="text-center">you dont have access to the requested page</h3>
+ <div *ngIf="isAdmin" class="text-center"><a class="btn btn-primary" routerLink="/admin" >admin home</a></div>
+ <div *ngIf="isAdmin" class="text-center"><a class="btn btn-primary" routerLink="/doctor">doctor home</a></div>
+ <div *ngIf="isAdmin" class="text-center"><a class="btn btn-primary" routerLink="/attorney">attorney home</a></div>
+ <div *ngIf="isAdmin" class="text-center"><a class="btn btn-primary" routerLink="/mdmuser" >mdm user home</a></div>
+    
+
+
+<!-- <p>You're logged in with Angular 6!!</p>
+<h3>All registered users:</h3>
+<ul>
+    <li *ngFor="let user of users">
+       Username: {{user.username}} (First Name: {{user.firstName}} Last Name: {{user.lastName}} Role: {{user.role}})
+        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
+    </li>
+</ul>
+<p>
+    <button class="btn btn-primary" (click)="logout()" >Logout</button>
+</p> -->

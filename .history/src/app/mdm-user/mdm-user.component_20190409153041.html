@@ -1,0 +1,293 @@
+<navbar></navbar>
+
+
+<div>
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <form [formGroup]="form" class="containerWidth">
+                <div class="row bordertop" id="topRow">
+                    
+                    <mat-form-field class="classright2per">
+                        <mat-select placeholder="Select Practice"  formControlName="practice" [(ngModel)]="practice" >
+                            <mat-option value="{{practice.practiceName}}" *ngFor="let practice of newpractice">{{practice.practiceName}}</mat-option>
+                      <!-- <mat-option value="Surgicore of JC">Surgicore of JC</mat-option>
+                        <mat-option value="All City Family Health Care">All City Family Health Care</mat-option>        
+                        <mat-option value="A&E Anesthesia Associates">A&E Anesthesia Associates</mat-option>        
+                        <mat-option value="Manalappan Surgery Center">Manalappan Surgery Center</mat-option>--> 
+                      </mat-select>              
+                    </mat-form-field>
+                 <!-- <mat-form-field class="col-3" >
+                    <mat-select placeholder="Select Practice" formControlName="practice" >
+                      <mat-option value="New Horizon Surgical Center">New Horizon Surgical Center</mat-option>
+                      <mat-option value="Surgicore of JC">Surgicore of JC</mat-option>
+                      <mat-option value="All City Family Health Care">All City Family Health Care</mat-option>        
+                      <mat-option value="A&E Anesthesia Associates">A&E Anesthesia Associates</mat-option>        
+                      <mat-option value="Manalappan Surgery Center">Manalappan Surgery Center</mat-option>
+                    </mat-select>              
+                  </mat-form-field>-->
+                 
+                      <div  class="col-3 marginTopFile">
+                          <input id="upbtn" type="file" id="file" (change)="handleFileInput($event.target.files)"accept=".pdf">
+                        </div>
+                  
+                </div>
+                <mat-card id="patientDetails" class="classright2per">
+                  <mat-card-header>
+                    <mat-card-title>Patient Details<i class="fa fa-tags" aria-hidden="true"></i></mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content >
+                    <div class="row" id="Patient1row" >
+                      <mat-form-field class="idField">
+                        <input matInput formControlName="id">
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Patient ID" formControlName="patientId">
+                      </mat-form-field>
+                      <mat-form-field class="col" >
+                        <input matInput placeholder="First Name" formControlName="firstName">
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Last Name"formControlName="lastName" >
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Initial"formControlName="initial" >
+                      </mat-form-field>
+                    </div>
+                    <!--<mat-divider></mat-divider>-->
+                    <div class="row" id="Patient2row" >
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Address"formControlName="address">
+                      </mat-form-field>
+                      <mat-form-field class="col" >
+                        <input matInput placeholder="City"formControlName="city">
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="State" formControlName="state">
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Zipcode" formControlName="zipcode" (input)='zipcodeValidate($event.target.value,$event)' [ngClass]="{ 'is-invalid': submitted && f.zipcode.errors}">
+                      </mat-form-field>
+                      
+                    </div>
+                    <!--<mat-divider></mat-divider>-->
+                    <div class="row" id="Patient3row" >
+                      <mat-form-field class="col" >
+                        <mat-select placeholder="Select Gender" formControlName="gender" >
+                          <mat-option value="male">Male</mat-option>
+                          <mat-option value="female">Female</mat-option>
+                        </mat-select>              
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                          <input matInput [matDatepicker]="FirstVisit" (focus)="FirstVisit.open()" placeholder="Select First Visit" formControlName="firstVisit">
+                          <mat-datepicker-toggle matSuffix [for]="FirstVisit"></mat-datepicker-toggle>
+                          <mat-datepicker #FirstVisit></mat-datepicker>
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                          <input matInput [matDatepicker]="DOB" (focus)="DOB.open()" placeholder="Select DOB" formControlName="dob">
+                          <mat-datepicker-toggle matSuffix [for]="DOB"></mat-datepicker-toggle>
+                          <mat-datepicker #DOB></mat-datepicker>
+                      </mat-form-field>
+                      <mat-form-field class="col" >
+                        <mat-select placeholder="Select Case Type" formControlName="caseType" >
+                          <mat-option value="nypip">NYPIP</mat-option>
+                          <mat-option value="njpip">NJPIP</mat-option>
+                          <mat-option value="nywc">NYWC</mat-option>
+                          <mat-option value="njwx">NJWC</mat-option>
+                          <mat-option value="mm">MAJOR MEDICAL</mat-option>
+                          <mat-option value="lien">LIEN</mat-option>
+                          <mat-option value="selfpay">SELF PAY</mat-option>
+                          <mat-option value="funded">FUNDED</mat-option>
+                        </mat-select>              
+                      </mat-form-field>
+                      <mat-form-field class="col-2">
+                          <input matInput placeholder="Age"formControlName="age">
+                          </mat-form-field>
+                           </div>
+                             <!--<mat-divider></mat-divider>-->
+                           <div class="row" id="Patient4row" >    
+                          <mat-form-field class="col-3">
+                        <input matInput placeholder="HomePhone"formControlName="homePhone">
+                      </mat-form-field>
+                      <mat-form-field class="col-3">
+                        <input matInput placeholder="Work Phone"formControlName="workPhone">
+                      </mat-form-field>
+                     <!-- <mat-form-field class="col-2">
+                        <input matInput placeholder="Age"formControlName="age">
+                      </mat-form-field>-->
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+                <mat-card id="patientInsDetails" class="classright2per">
+                  <mat-card-header>
+                    <mat-card-title>Insured Details<i class="fa fa-tags" aria-hidden="true"></i></mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content >
+                    <div class="row" id="Insurance1row" >
+                      <p>Patient Insurance details :(is self insured then skip this)</p>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="First Name" formControlName="patientInsFirstName">
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Last Name" formControlName="patientInsLastName">
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Initial" formControlName="patientInsInitial">
+                      </mat-form-field>
+                    </div>
+                    <!--<mat-divider></mat-divider>-->
+                    <div class="row" id="Insurance2row" >
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Address" formControlName="patientInsAddress">
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="City" formControlName="patientInsCity">
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="State" formControlName="patientInsState">
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Zipcode" formControlName="patientInsZipcode" (input)='patientInsZipcode($event.target.value,$event)' [ngClass]="{ 'is-invalid': submitted && f.zipcode.errors }">
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Phone" formControlName="patientInsPhone">
+                      </mat-form-field>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+                <mat-card id="primaryInsDetails" class="classright2per">
+                  <mat-card-header>
+                    <mat-card-title>Primary Insurance Details<i class="fa fa-tags" aria-hidden="true"></i></mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content >
+                    <div class="row" id="primaryIns1row" >
+                        <mat-form-field class="col" >
+                            <mat-select placeholder="Select Insurance Co." formControlName="pInsCompany" >
+                              <mat-option value="stateInsuranceFund">State Insurance Fund</mat-option>
+                              <mat-option value="nyCityLawDept">NY City Law Dept</mat-option>
+                              <mat-option value="herefordInsurance">Hereford Insurance</mat-option>        
+                              <mat-option value="unitedHealthCare">United Health Care</mat-option>        
+                              <mat-option value="horizonBCBS">Horizon BCBS</mat-option>
+                            </mat-select>              
+                          </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Claim #" formControlName="pClaim">
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                          <input matInput [matDatepicker]="DOA" (focus)="DOA.open()" placeholder="Select DOA" formControlName="doa">
+                          <mat-datepicker-toggle matSuffix [for]="DOA"></mat-datepicker-toggle>
+                          <mat-datepicker #DOA></mat-datepicker>
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Relationship" formControlName="pRelationship">
+                      </mat-form-field>
+                    </div>
+                    <!--<mat-divider></mat-divider>-->
+                    <div class="row" id="primaryIns2row" >
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Notes" formControlName="pNotes">
+                      </mat-form-field>
+                      <mat-form-field class="col-4">
+                        <input matInput placeholder="Policy #" formControlName="pPolicy">
+                      </mat-form-field>
+                    </div>
+                    <div class="row" id="primaryIns3row" >
+                        <mat-form-field class="col">
+                          <input matInput placeholder="Certifier" formControlName="pCertifier">
+                        </mat-form-field>
+                        <mat-form-field class="col-4">
+                          <input matInput placeholder="Adjuster" formControlName="pAdjuster">
+                        </mat-form-field>
+                        <mat-form-field class="col-4">
+                            <input matInput placeholder="Adjuster Fax" formControlName="pAdjusterFax">
+                          </mat-form-field>
+                      </div>
+                  </mat-card-content>
+                </mat-card>
+                <mat-card id="secondaryInsDetails" class="classright2per">
+                  <mat-card-header>
+                    <mat-card-title>Secondary Insurance Details<i class="fa fa-tags" aria-hidden="true"></i></mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content >
+                    <div class="row" id="secondaryIns1row" >
+                        <mat-form-field class="col" >
+                            <mat-select placeholder="Select Insurance Co." formControlName="sInsCompany" >
+                              <mat-option value="stateInsuranceFund">State Insurance Fund</mat-option>
+                              <mat-option value="nyCityLawDept">NY City Law Dept</mat-option>
+                              <mat-option value="herefordInsurance">Hereford Insurance</mat-option>        
+                              <mat-option value="unitedHealthCare">United Health Care</mat-option>        
+                              <mat-option value="horizonBCBS">Horizon BCBS</mat-option>
+                            </mat-select>              
+                          </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Claim #" formControlName="sClaim">
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Relationship" formControlName="sRelationship">
+                      </mat-form-field>
+                    </div>
+                    <!--<mat-divider></mat-divider>-->
+                    <div class="row" id="secondaryIns2row" >
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Notes" formControlName="sNotes">
+                      </mat-form-field>
+                      <mat-form-field class="col-4">
+                        <input matInput placeholder="Policy #" formControlName="sPolicy">
+                      </mat-form-field>
+                    </div>
+                    <div class="row" id="primaryIns3row" >
+                        <mat-form-field class="col">
+                          <input matInput placeholder="Certifier" formControlName="sCertifier">
+                        </mat-form-field>
+                        <mat-form-field class="col-4">
+                          <input matInput placeholder="Adjuster" formControlName="sAdjuster">
+                        </mat-form-field>
+                        <mat-form-field class="col-4">
+                            <input matInput placeholder="Adjuster Fax" formControlName="sAdjusterFax">
+                          </mat-form-field>
+                      </div>
+                  </mat-card-content>
+
+                </mat-card>
+                <mat-card id="patientAttorneyDetails" class="classright2per">
+                  <mat-card-header>
+                    <mat-card-title>Patient Attorney Details<i class="fa fa-tags" aria-hidden="true"></i></mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content >
+                    <div class="row" id="PatientAtt1row" >
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Attorney First Name" formControlName="attorneyFirstName">
+                      </mat-form-field>
+                      <mat-form-field class="col" >
+                        <input matInput placeholder="Attorney Last Name" formControlName="attorneyLastName">
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Phone"formControlName="attorneyPhone" >
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Fax"formControlName="attorneyfax" >
+                      </mat-form-field>
+                    </div>
+                    <!--<mat-divider></mat-divider>-->
+                    <div class="row" id="PatientAtt2row" >
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Address"formControlName="attorneyAddress">
+                      </mat-form-field>
+                      <mat-form-field class="col" >
+                        <input matInput placeholder="City"formControlName="attorneyCity">
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="State" formControlName="attorneyState">
+                      </mat-form-field>
+                      <mat-form-field class="col">
+                        <input matInput placeholder="Zipcode" formControlName="attorneyZipcode" (input)='attorneyzipCodeValidate($event.target.value,$event)' [ngClass]="{ 'is-invalid': submitted && f.zipcode.errors }">
+                      </mat-form-field>
+                    </div>
+                  </mat-card-content>
+                  <mat-card-actions>
+                      <button mat-raised-button class="primaryColor" id="save" (click)="save() " >Add Patient</button>
+                  </mat-card-actions>
+                </mat-card>
+              </form>
+</div>
+</div>
+</div>
