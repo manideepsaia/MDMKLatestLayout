@@ -1,0 +1,58 @@
+
+<h2 *ngIf="!changeTitle" mat-dialog-title>Enter New User Details</h2>
+<h2 *ngIf="changeTitle" mat-dialog-title>Edit User Details</h2>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field class="idField">
+    <input matInput formControlName="id">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="First Name" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Last Name" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="password" matInput placeholder="Password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+  </mat-form-field>
+
+  <mat-form-field>
+      <mat-select placeholder="Select Role" formControlName="role" (selectionChange)="onRoleChange($event.value)" [ngClass]="{ 'is-invalid': submitted && f.role.errors }">
+        <mat-option value="admin">Admin</mat-option>
+        <mat-option value="attorney">Attorney</mat-option>
+        <mat-option value="doctor">Doctor</mat-option>        
+        <mat-option value="mdmuser">MDM User</mat-option>        
+      </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="disAbled">
+
+      <mat-select placeholder="Select Practice"  formControlName="practice" [(ngModel)]="practice" >
+          <mat-option [value]="practice.practiceName" *ngFor="let practice of practices">{{practice.practiceName}}</mat-option>
+       <!--   <mat-option [value]="practice" *ngFor="let practice of practices">{{practice.practiceName}}</mat-option>-->
+  <!--  <mat-select placeholder="Select Practice" formControlName="practice" >
+      <mat-option value="New Horizon Surgical Center">New Horizon Surgical Center</mat-option>
+      <mat-option value="Surgicore of JC">Surgicore of JC</mat-option>
+      <mat-option value="All City Family Health Care">All City Family Health Care</mat-option>        
+      <mat-option value="A&E Anesthesia Associates">A&E Anesthesia Associates</mat-option>        
+      <mat-option value="Manalappan Surgery Center">Manalappan Surgery Center</mat-option>-->
+    </mat-select>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-divider></mat-divider>
+
+<mat-dialog-actions align="center">
+    <!--<button class="mat-raised-button" id="saveBtn" (click)="save()">Save</button>-->
+    <button class="mat-raised-button primaryColor" id="saveBtn" (click)="save()"><span *ngIf="!changeTitle">Save</span><span *ngIf="changeTitle">Update</span></button>
+    <button class="mat-raised-button" (click)="close()">Close</button>
+</mat-dialog-actions>
