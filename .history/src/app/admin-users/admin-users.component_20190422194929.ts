@@ -23,7 +23,7 @@ users: User[] = [];
 /**
  * Pre-defined columns list for user table
  */
-displayedColumns = ['id', 'Name', 'Email', 'Role', 'Tasks'];
+displayedColumns = ['id', 'Name', 'Email', 'Practice', 'Role', 'Tasks'];
 
 constructor(
   public dialog: MatDialog ,

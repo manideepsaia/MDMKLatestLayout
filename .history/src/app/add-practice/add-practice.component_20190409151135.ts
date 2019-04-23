@@ -33,7 +33,6 @@ export class AddPracticeComponent implements OnInit {
         // id:['',Validators.required],
         // practiceName: new FormControl('',Validators.required),
         practiceName: ['', Validators.required],
-        practiceCode: ['', Validators.required],
         address1 : new FormControl('', Validators.required),
         address2 : new FormControl('', Validators.nullValidator),
         city : new FormControl('', Validators.required),
@@ -45,7 +44,6 @@ export class AddPracticeComponent implements OnInit {
       if (data) {
         this.form.get('id').setValue(data.id);
         this.form.get('practiceName').setValue(data.practiceName);
-        this.form.get('practiceCode').setValue(data.practiceCode);
         this.form.get('address1').setValue(data.address1);
         this.form.get('address2').setValue(data.address2);
         this.form.get('city').setValue(data.city);

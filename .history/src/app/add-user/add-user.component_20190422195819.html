@@ -34,19 +34,19 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Phone" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }">
+    <input matInput placeholder="Phone" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && f.practice.errors }">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Fax" formControlName="fax" [ngClass]="{ 'is-invalid': submitted && f.fax.errors }">
+    <input matInput placeholder="Fax" formControlName="fax" [ngClass]="{ 'is-invalid': submitted && f.practice.errors }">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Address" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }">
+    <input matInput placeholder="Address" formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.practice.errors }">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="City" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+    <input matInput placeholder="City" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.practice.errors }">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="State" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+    <input matInput placeholder="State" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f.practice.errors }">
   </mat-form-field>
   <mat-form-field>
     <input type="text" matInput placeholder="Zipcode" formControlName="zipcode" (input)='zipcodeValidate($event.target.value,$event)' [ngClass]="{ 'is-invalid': submitted && f.zipcode.errors }">

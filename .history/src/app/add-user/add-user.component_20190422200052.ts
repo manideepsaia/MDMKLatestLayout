@@ -68,20 +68,6 @@ export class AddUserComponent implements OnInit {
   ngOnInit() {
    // this.practices=this.practiceService.getPractices();
   }
-  zipcodeValidate(valueZip, eventVal) {
-    console.log(eventVal);
-    if (valueZip.length > 10) {
-      this.form.get('zipcode').setValue(valueZip.substr(0, valueZip.length - 1));
-    } else {
-      if (valueZip.charCodeAt(valueZip.length - 1) >= 48 && valueZip.charCodeAt(valueZip.length - 1) <= 57) {
-        if (valueZip.length === 5) {
-          this.form.get('zipcode').setValue(valueZip + '-');
-        }
-      } else {
-        this.form.get('zipcode').setValue(valueZip.substr(0, valueZip.length - 1));
-      }
-    }
-  }
 
   get f() { return this.form.controls; }
 
